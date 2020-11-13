@@ -1,11 +1,88 @@
-import React from 'react'
+import React,{Component} from 'react'
+import {Carousel} from 'antd'
+import {list,titleList} from '@config/index.js'
 import "./style.less"
-export default function index() {
- return (
-     <div>
-         你看，你多坚强啊！
-         你在自己的世界里，活成了一个英雄！
-         玻璃晴朗，橘子辉煌！
-     </div>
- )
+import { Row, Col } from 'antd';
+export default class Home extends Component{
+    constructor(props,context) {
+        super(props)
+        this.state = {
+            appliancesList:[
+                {
+                    id:0,
+                    title:'现代简约'
+                },
+                {
+                    id:1,
+                    title:'风情北欧'
+                },
+                {
+                    id:2,
+                    title:'典雅新中式'
+                },
+                {
+                    id:3,
+                    title:'品质轻奢'
+                },
+            ]
+        }
+    }
+    render() {
+        return (
+            <main className="index-main">
+               <Carousel autoplay>
+                   {
+                       list.map(val => 
+                       <div className="car-img">
+                           <img src={val.url}></img>
+                       </div>
+                       )
+                   }
+               </Carousel>
+               <section class='list-content'>
+                   <p class='title-tips'>海信官网</p>
+                   <div className='list-content-item'>
+                       <a title='海信官方商城-权威官网 汇聚精品'>
+                           <div className='set-list-big'>
+                               <img src={titleList[0].url} className="hover-img"></img>
+                               <img src={titleList[0].hoverUrl} className="hover-img"></img>
+                           </div>
+                       </a>
+                       <a title='海信官方商城-权威官网 汇聚精品'>
+                           <div className='set-list-middle'>
+                               <img src={titleList[1].url} className="hover-img"></img>
+                               <img src={titleList[1].hoverUrl} className="hover-img"></img>
+                           </div>
+                       </a>
+                       <div class='set-list-right'>
+                           <a title='海信官方商城-权威官网 汇聚精品'>
+                               <div className='set-list-small'>
+                                   <img src={titleList[2].url} className="hover-img"></img>
+                                   <img src={titleList[2].hoverUrl} className="hover-img"></img>
+                               </div>
+                           </a>
+                           <a title='海信官方商城-权威官网 汇聚精品'>
+                           <div className='set-list-small mgt20'>
+                               <img src={titleList[3].url} className="hover-img"></img>
+                               <img src={titleList[3].hoverUrl} className="hover-img"></img>
+                           </div>
+                       </a>
+                       </div>
+                   </div>
+               </section>
+       
+               <section class='list-content'>
+                   <p class='title-tips'>璀璨·成套家电专区</p>
+                   <div>
+                       <Row>
+                           {
+                               this.state.appliancesList.map(val =><Col key={val.key}>{val.title}</Col>)
+                           }
+                       </Row>
+                       <img src="https://img.shop.hisense.com/2020/11/05/6d02e510-dd01-4229-9142-68e536556572.jpg"></img>
+                   </div>
+               </section>
+            </main>
+        )
+    }
 }

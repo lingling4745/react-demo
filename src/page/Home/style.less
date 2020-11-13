@@ -1,4 +1,71 @@
-@color:red;
-div{
- color:@color
+@import '@style/common.less';
+.index-main{
+  .car-img{
+    height: 500px;
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .title-tips{
+    font-weight: bold;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+  }
+  .list-content{
+
+    width: 1200px;
+    margin: 0 auto;
+
+    .list-content-item{
+
+      .display();
+
+      .set-list-big,.set-list-middle,.set-list-right{
+        height: 269px;
+        position: relative;
+      }
+
+      .set-list-big{
+        width: 588px;
+      }
+
+      .set-list-middle{
+        width: 294px;
+        margin: 0 15px;
+      }
+      
+      .set-list-small{
+
+        height: 124px;
+        position: relative;
+      }
+      .set-list-small + .set-list-small{
+        margin-top: 10px;
+      }
+      img.hover-img{
+        width: 100%;
+        height: 100%;
+        &:nth-child(1){
+          opacity: 1;
+          z-index: 1;
+        }
+        &:nth-child(2){
+          opacity: 0;
+          z-index: 11111;
+          position: absolute;
+          top:0;
+          left: 0;
+          height: 100%;
+          transition: all 0.3s ease;
+        }
+        &:hover{
+          &:nth-child(2){
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
 }
