@@ -1,0 +1,46 @@
+{
+  "name": "demo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.8.2",
+    "axios": "^0.21.0",
+    "mockjs": "^1.1.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.4",
+    "redux": "^4.0.5"
+  },
+  "sideEffects": [
+    "*.css",
+    "*.less"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server start",
+    "dev": "webpack-dev-server --mode development --config config/webpack_dev.js",
+    "build": "webpack --mode production --config config/webpack_pro.js",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "linit": "eslint --ext .js --ext .jsx src"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+}
