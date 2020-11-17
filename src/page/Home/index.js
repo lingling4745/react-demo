@@ -38,7 +38,6 @@ export default class Home extends Component{
     cardWay(){
         return this.state.carAllList.map(val =>{
             let {name,saleQuantity,mainImage,id} = val;
-            mainImage = 'https:'+mainImage;
             let value = {name,saleQuantity,mainImage};
             return(
                 <CardItem {...value} key={id}></CardItem>
