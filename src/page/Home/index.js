@@ -1,8 +1,11 @@
 import React,{Component} from 'react'
 import {Carousel} from 'antd'
-import {list,titleList} from '@config/index.js'
+import {titleList} from '@config/index.js'
 import "./style.less"
 import { Row, Col } from 'antd';
+import CardItem from '@components/card/card'
+import {getBanner,cardList} from '@api/api.js'
+
 export default class Home extends Component{
     constructor(props,context) {
         super(props)
@@ -24,23 +27,57 @@ export default class Home extends Component{
                     id:3,
                     title:'品质轻奢'
                 },
-            ]
+            ],
+            banner:[],
+            carAllList:[]
         }
+    }
+    componentDidMount(){
+        this.init();
+    }
+    cardWay(){
+        return this.state.carAllList.map(val =>{
+            let {name,saleQuantity,mainImage,id} = val;
+            mainImage = 'https:'+mainImage;
+            let value = {name,saleQuantity,mainImage};
+            return(
+                <CardItem {...value} key={id}></CardItem>
+            )
+        })
+    }
+
+    init(){
+        getBanner().then(res =>{
+            console.log(res)
+            if(res){
+                this.setState({
+                    banner:res
+                })
+            }
+        });
+        cardList().then(res =>{
+            console.log(res)
+            if(res){
+                this.setState({
+                    carAllList:res
+                })
+            }
+        })
     }
     render() {
         return (
             <main className="index-main">
                <Carousel autoplay>
                    {
-                       list.map(val => 
+                       this.state.banner.map(val => 
                        <div className="car-img">
                            <img src={val.url}></img>
                        </div>
                        )
                    }
                </Carousel>
-               <section class='list-content'>
-                   <p class='title-tips'>海信官网</p>
+               <section className='list-content'>
+                   <p className='title-tips'>海信官网</p>
                    <div className='list-content-item'>
                        <a title='海信官方商城-权威官网 汇聚精品'>
                            <div className='set-list-big'>
@@ -54,7 +91,7 @@ export default class Home extends Component{
                                <img src={titleList[1].hoverUrl} className="hover-img"></img>
                            </div>
                        </a>
-                       <div class='set-list-right'>
+                       <div className='set-list-right'>
                            <a title='海信官方商城-权威官网 汇聚精品'>
                                <div className='set-list-small'>
                                    <img src={titleList[2].url} className="hover-img"></img>
@@ -71,8 +108,8 @@ export default class Home extends Component{
                    </div>
                </section>
        
-               <section class='list-content'>
-                   <p class='title-tips'>璀璨·成套家电专区</p>
+               <section className='list-content'>
+                   <p className='title-tips'>璀璨·成套家电专区</p>
                    <div>
                        <Row>
                            {
@@ -81,6 +118,11 @@ export default class Home extends Component{
                        </Row>
                        <img src="https://img.shop.hisense.com/2020/11/05/6d02e510-dd01-4229-9142-68e536556572.jpg"></img>
                    </div>
+               </section>
+               <section className="list-item">
+                   {
+                       this.cardWay()
+                   }
                </section>
             </main>
         )

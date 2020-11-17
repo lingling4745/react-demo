@@ -5,6 +5,7 @@ import {headerList,nav} from '@config/index.js'
 import './style.less'
 import {SmileOutlined} from  '@ant-design/icons'
 import {Menu } from 'antd'
+import Login from '@components/Login/login'
 
 const { SubMenu } = Menu;
 
@@ -12,6 +13,7 @@ export default class Header extends Component{
   constructor(props,context) {
     super(props)
     this.state = {
+      visible:false,
       header:[
         {
           id:0,
@@ -34,8 +36,20 @@ export default class Header extends Component{
       }
     })
   }
+  clickEvent(id){
+
+    if(id == 0){
+      this.setState({
+        visible:true
+      })
+    }
+  };
+  fn(){
+    this.setState({
+      visible:false
+    })
+  }
   render() {
-    
     return (
       <div className="header_main">
         <img src={top}  className="image"></img>
@@ -47,7 +61,7 @@ export default class Header extends Component{
             </div>
             <ul className="list">
               {
-                headerList.map(val => <li data-id={val.id} key={val.id}>{val.title}</li>
+                headerList.map(val => <li data-id={val.id} key={val.id} onClick={() =>this.clickEvent(val.id)}>{val.title}</li>
                 )
               }
             </ul>
@@ -64,6 +78,7 @@ export default class Header extends Component{
             </Menu>
           </div>
         </nav>
+        <Login visible={this.state.visible} pfn={this.fn.bind(this)}></Login>
       </div>
     )
   }

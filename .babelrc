@@ -10,18 +10,19 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "core.js":2
-      }
-    ],
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "decoratorsBeforeExport":true
-      }
-    ],
+    // [
+    //   "@babel/plugin-transform-runtime",
+    //   {
+    //     "core.js":2
+    //   }
+    // ],
+    // [
+    //   "@babel/plugin-proposal-decorators",
+    //   {
+    //     "decoratorsBeforeExport":true
+    //   }
+    // ],
+    ["@babel/plugin-proposal-class-properties"],
     "react-hot-loader/babel"
   ]
 }
