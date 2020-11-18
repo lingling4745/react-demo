@@ -9,17 +9,12 @@
  "eslint:recommended",
  "plugin:react/recommended"
 ],
-"parserOptions": {
- "ecmaVersion": 7,
- // 开启实验属性
- "ecmaFeatures": {
-   "experimentalObjectRestSpread": true,
-   // 修饰器
-   "experimentalDecorators": true,
-   "jsx": true
- },
- "sourceType": "module"
-},
+
+"parserOptions" : {
+  "ecmaFeatures": {
+    "legacyDecorators": true
+  }
+}
 "plugins": [
  "react"
 ],

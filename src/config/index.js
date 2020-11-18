@@ -169,3 +169,8 @@ export const titleList = [
     hoverUrl:'https://img.shop.hisense.com/2020/03/11/b0264cd8-269f-46a5-91e1-fe7c2273c688.jpg'
   }
 ]
+
+export const userInfo = {
+  email:'646368699@qq.com',
+  password:'123456789'
+}

@@ -100,9 +100,9 @@ module.exports = {
     alias: { // 减少使用别名提高编译速速
       '@': path.join(__dirname, '../../DEMO'),
       '@mocks': path.join(__dirname, '../src/mocks'),
-      // '@actions': path.join(__dirname, '../app/redux/actions'),
+      '@page': path.join(__dirname, '../src/page'),
       // '@reducers': path.join(__dirname, '../app/redux/reducers'),
-      // '@apis': path.join(__dirname, '../app/apis'),
+      '@redux': path.join(__dirname, '../src/redux'),
       '@components': path.join(__dirname, '../src/components'),
       '@src': path.join(__dirname, '../src'),
       '@config': path.join(__dirname, '../src/config'),
@@ -113,7 +113,7 @@ module.exports = {
       // '@pages': path.join(__dirname, '../app/pages'),
       '@style': path.join(__dirname, '../src/style'),
       // '@tableList': path.join(__dirname, '../app/components/tableList/tableList.js'),
-      // 'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom', // react-hot-loader需要
+      'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom', // react-hot-loader需要
     },
   },
   plugins: [

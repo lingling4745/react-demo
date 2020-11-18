@@ -5,10 +5,17 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import '@mocks/mocks.js'
 
+
+import { Provider} from 'react-redux'
+import store from '@redux/stores/index.js'
+
+import RouterConfig from '@config/router'
+
+console.log(RouterConfig)
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <RouterConfig />
+  </Provider>,
   document.getElementById('root')
 );
 

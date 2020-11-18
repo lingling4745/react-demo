@@ -1,7 +1,18 @@
 import React, {Component} from 'react'
 import { Form, Input,Modal } from 'antd';
+import { addTodo, addList } from '@redux/action/index'
+import { connect } from 'react-redux'
+import { login } from '@api/api'
 
-export default class Login extends Component{
+@connect((state, props) => ({
+  userInfo:state.setUserInfo,
+  list:state.setList
+}))
+
+class Login extends Component{
+
+  formRef = React.createRef();
+
   constructor(props,contexts){
     super(props)
     this.handleCancel = this.handleCancel.bind(this)
@@ -9,7 +20,7 @@ export default class Login extends Component{
     this.fn = this.fn.bind(this)
     this.state = {
       email:'',
-      password:''
+      password:'',
     }
   }
   inputEmail = (event) =>{
@@ -25,14 +36,35 @@ export default class Login extends Component{
   fn(){
     this.props.pfn()
   }
-  handleOk(){
+  handleOk(e){
+    e.preventDefault();
+    this.formRef.current.validateFields().then(val =>{
+      login(val).then(res =>{
+        if(res){
+          this.props.dispatch(addTodo(res))
+          this.props.dispatch(addList([1,2,3,4,5,6]))
+          let time = setTimeout(() =>{
+            console.log(this.props);
+            clearTimeout(time)
+          },1000)
+          this.fn()
+        }
+      }).catch( err => {
 
-    this.fn()
+      })
+      // this.fn()
+    }).catch(errorInfo => {
+      console.log("errorInfo:"+ errorInfo)
+    })
   }
   handleCancel(){
     this.fn()
   }
+  checkPsd(rule, value, callback){
+
+  }
   render(){
+    // console.log(this.propsItem.userInfo)
     return(
       <Modal
         title="登录"
@@ -40,15 +72,19 @@ export default class Login extends Component{
         onOk={this.handleOk}
         onCancel={this.handleCancel}
       >
-          <Form>
-            <Form.Item name="email" label="邮箱" rules={[{ required: true }]}>
-              <Input type="email" value={this.state.email} onChange={this.inputEmail}></Input>
+          <Form ref={this.formRef}>
+            {/* <Form.Item name="email" label="邮箱" rules={[{ required: true },{validator:(rule, value, callback) => { this.checkPsd(rule, value, callback) }}]} validateTrigger="onChange"> */}
+            <Form.Item name='email' label="邮箱" rules={[{ required: true }]}>
+              <Input type="email"></Input>
+              {/* <Input type="email" value={this.state.email} onChange={this.inputEmail}></Input> */}
             </Form.Item>
             <Form.Item name='password' label="密码" rules={[{ required: true }]}>
-              <Input type="password" value={this.state.password} onChange={this.inputPassword}></Input>
+              <Input type="email"></Input>
+              {/* <Input type="password" value={this.state.password} onChange={this.inputPassword}></Input> */}
             </Form.Item>
           </Form>
       </Modal>
     )
   }
 }
+export default Login;

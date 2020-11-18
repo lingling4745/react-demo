@@ -19,7 +19,6 @@ const errorHandler = (err) =>{
   }
 }
 request.interceptors.request.use(config =>{
-  console.log(config)
   config.headers['device_type'] = 'web'
   config.headers['version_number'] = 101
   config.headers['version_name'] = '1.0.1'
@@ -29,11 +28,11 @@ request.interceptors.request.use(config =>{
 },errorHandler)
 
 request.interceptors.response.use((response) =>{
-  if(response.data && response.data.code == 0){
+  if(response.data && response.data.code === 0){
     return response.data.data
   }
-  if(response.data && response.data.code != 0){
-    message.error(response.message)
+  if(response.data && response.data.code !== 0){
+    message.error(response.data.message)
     return false;
   }
   return response.data

@@ -1,5 +1,3 @@
-import { message } from "antd"
-
 const responseBody = {
   code:0,
   message:'',
@@ -7,10 +5,10 @@ const responseBody = {
 }
 export const builder = (data,message,code = 0,headers = {}) =>{
   responseBody.data = data;
-  if(!message){
+  if(message){
     responseBody.message = message
   }
-  if(code != undefined && code != null){
+  if(code !== undefined && code !== null){
     responseBody.code = code;
   }
   return responseBody;

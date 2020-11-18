@@ -1,7 +1,8 @@
 import request from '@api/requset.js'
 const api = {
   banner:'/api/banner',
-  cardList:'/api/get-data'
+  cardList:'/api/get-data',
+  login:'/api/login'
 }
 export const getBanner = () =>{
   return request({
@@ -13,5 +14,12 @@ export const cardList = () =>{
   return request({
     url:api.cardList,
     method:'get'
+  })
+}
+export const login = (data) =>{
+  return request({
+    url:api.login,
+    method:'post',
+    data:data
   })
 }

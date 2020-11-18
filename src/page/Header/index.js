@@ -10,6 +10,7 @@ import Login from '@components/Login/login'
 const { SubMenu } = Menu;
 
 export default class Header extends Component{
+  
   constructor(props,context) {
     super(props)
     this.state = {
@@ -38,10 +39,12 @@ export default class Header extends Component{
   }
   clickEvent(id){
 
-    if(id == 0){
+    if(id === 0){
       this.setState({
         visible:true
       })
+    }else{
+      this.props.history.push('/client')
     }
   };
   fn(){

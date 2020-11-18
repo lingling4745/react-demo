@@ -8,17 +8,20 @@ import 'moment/locale/zh-cn';
 import 'antd/dist/antd.css';
 import { ConfigProvider } from 'antd';
 import '@style/page.less'
-
 moment.locale('zh-cn')
-function App() {
-  return (
-    <ConfigProvider locale={zhCN}>
-      <div className="App">
-        <Header />
-        <Home/>
-      </div>
-    </ConfigProvider>
-  );
+export default class App extends React.Component{
+  constructor(props,context){
+    super(props)
+  }
+  render(){
+    return (
+      <ConfigProvider locale={zhCN}>
+        <div className="App">
+          <Header {...this.props}/>
+          <Home/>
+        </div>
+      </ConfigProvider>
+    )
+  }
 }
-
-export default App;
+// export default App;
