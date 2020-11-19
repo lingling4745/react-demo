@@ -22,19 +22,29 @@
 //   </Router>
 // )
 
+
+/**
+ * 区别于 <HashRouter>，有响应请求的服务器时使用 <BrowserRouter>，使用的是静态文件的服务器，则用 <HashRouter>。
+ * 使用 hash 记录导航历史不支持 location.key 和 location.state
+ */
 import React from "react"
 import {
-  HashRouter,
+  BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 import app from '@src/app'
 import * as client from '@page/client'
+import { createHashHistory } from "history";
+const history = createHashHistory();
 export default () =>(
-  <HashRouter>
+  <Router history={history}>
     <Switch>
       <Route exact  path='/' component={app}></Route>
       <Route exact  path='/client' component={client.Client}></Route>
+      <Route exact  path='/params/:id' component={client.Params}></Route>
+      <Route exact  path='/query' component={client.Query}></Route>
+      <Route path='/render' render={() =><div>56456456</div>}></Route>
     </Switch>
-  </HashRouter>
+  </Router>
 )

@@ -65,6 +65,7 @@ export default class Home extends Component{
     render() {
         return (
             <main className="index-main">
+                {this.props.children}
                <Carousel autoplay>
                    {
                        this.state.banner.map(val => 

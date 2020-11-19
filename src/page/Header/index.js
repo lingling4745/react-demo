@@ -15,6 +15,7 @@ export default class Header extends Component{
     super(props)
     this.state = {
       visible:false,
+      content: '<h1>React.js 小书</h1>',
       header:[
         {
           id:0,
@@ -43,8 +44,28 @@ export default class Header extends Component{
       this.setState({
         visible:true
       })
-    }else{
-      this.props.history.push('/client')
+    }else if(id === 1){
+      this.props.history.push({
+        pathname: '/client',
+        state: {
+            id: 3
+        }
+      })
+    }else if(id === 2){
+      this.props.history.push('/params/'+ '2'  )
+    }else if(id === 3){
+      // this.props.history.push({
+      //   pathname: '/query',
+      //   query: {
+      //       id: 3
+      //   }
+      // })
+      this.props.history.push({
+        pathname: '/query',
+        search:'id=3&type=4'
+      })
+    }else if(id === 4){
+      this.props.history.push('/render')
     }
   };
   fn(){
@@ -52,10 +73,17 @@ export default class Header extends Component{
       visible:false
     })
   }
+
+  /**
+   * 方法
+   * onChange= {this.clickEvent.bind(this,val.id)}
+   * 或
+   * onChange= {() =>this.clickEvent(val.id)}
+   */
   render() {
     return (
       <div className="header_main">
-        <img src={top}  className="image"></img>
+        <img src={top}  className="image"alt=''></img>
         <header>
           <div className="header_nav">
             <div>
@@ -64,7 +92,7 @@ export default class Header extends Component{
             </div>
             <ul className="list">
               {
-                headerList.map(val => <li data-id={val.id} key={val.id} onClick={() =>this.clickEvent(val.id)}>{val.title}</li>
+                headerList.map(val => <li data-id={val.id} key={val.id} onClick={this.clickEvent.bind(this,val.id)}>{val.title}</li>
                 )
               }
             </ul>
@@ -73,7 +101,7 @@ export default class Header extends Component{
         <nav>
           <div className='nav-item'>
             <div className='logo'>
-              <img src={logo}></img>
+              <img src={logo} alt='logo'></img>
               <span>官网</span>
             </div>
             <Menu mode="horizontal">
@@ -81,6 +109,7 @@ export default class Header extends Component{
             </Menu>
           </div>
         </nav>
+        {this.props.children}
         <Login visible={this.state.visible} pfn={this.fn.bind(this)}></Login>
       </div>
     )

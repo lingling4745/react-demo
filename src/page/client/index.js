@@ -1,3 +1,4 @@
 import Client from './client'
-
-export {Client}
+import Params from './params'
+import Query from './Query'
+export {Client,Params,Query}

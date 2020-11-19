@@ -11,10 +11,13 @@ import store from '@redux/stores/index.js'
 
 import RouterConfig from '@config/router'
 
-console.log(RouterConfig)
+import {ThemeContext,themes} from '@config/theme-context'
+
 ReactDOM.render(
   <Provider store={store}>
-    <RouterConfig />
+    <ThemeContext.Provider value={themes.light}>
+        <RouterConfig />
+    </ThemeContext.Provider>
   </Provider>,
   document.getElementById('root')
 );
